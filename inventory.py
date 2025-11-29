@@ -8,15 +8,15 @@ DATA_FILE = "products.json"
 def load_products():
     """Load products from file"""
     if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, "r") as f:
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     return {}  # Empty dict if file doesn't exist
 
 
 def save_products(products):
     """Save products to file"""
-    with open(DATA_FILE, "w") as f:
-        json.dump(products, f, indent=2)
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(products, f, indent=2, ensure_ascii=False)
 
 
 def show_menu():

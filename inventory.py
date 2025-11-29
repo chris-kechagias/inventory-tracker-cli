@@ -47,6 +47,47 @@ def view_products(products):
     print("=" * 50)
 
 
+def add_product(products):
+    """Add a new product"""
+    print("\n=== ADD NEW PRODUCT ===")
+
+    # Generate new ID
+    if products:
+        new_id = str(max([int(pid) for pid in products.keys()]) + 1)
+    else:
+        new_id = "1"
+
+    # Get product details
+    name = input("Product name: ")
+
+    # Get price with error handling
+    while True:
+        try:
+            price = float(input("Price: $"))
+            if price < 0:
+                print("Price cannot be negative!")
+                continue
+            break
+        except ValueError:
+            print("Invalid price! Please enter a number.")
+
+    # Get quantity with error handling
+    while True:
+        try:
+            quantity = int(input("Quantity: "))
+            if quantity < 0:
+                print("Quantity cannot be negative!")
+                continue
+            break
+        except ValueError:
+            print("Invalid quantity! Please enter a whole number.")
+
+    # Add to products
+    products[new_id] = {"name": name, "price": price, "quantity": quantity}
+
+    print(f"\n✓ Product '{name}' added with ID {new_id}!")
+
+
 def main():
     """Main program loop"""
     products = load_products()  # Load products at start
@@ -58,7 +99,7 @@ def main():
         if choice == "1":
             view_products(products)
         elif choice == "2":
-            print("Add product - coming soon!")
+            add_product(products)
         elif choice == "3":
             print("Update quantity - coming soon!")
         elif choice == "4":

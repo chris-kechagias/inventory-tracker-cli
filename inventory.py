@@ -88,23 +88,26 @@ def add_product(products):
     print(f"\n✓ Product '{name}' added with ID {new_id}!")
 
 
+def get_valid_choice(min_val, max_val):
+    """Get a valid integer choice from user"""
+    while True:
+        try:
+            choice = int(input(f"\nEnter your choice ({min_val}-{max_val}): "))
+            if min_val <= choice <= max_val:
+                return choice
+            else:
+                print(f"❌ Please enter a number between {min_val} and {max_val}.")
+        except ValueError:
+            print("❌ Invalid input! Please enter a number.")
+
+
 def main():
     """Main program loop"""
     products = load_products()  # Load products at start
 
     while True:
         show_menu()
-
-        try:
-            choice = int(input("\nEnter your choice (1-5): "))
-        except ValueError:
-            print("❌ Invalid input! Please enter a number between 1-5.")
-            continue  # Go back to start of loop
-
-        # Check if choice is in valid range
-        if choice < 1 or choice > 5:
-            print("❌ Invalid choice! Please enter 1-5.")
-            continue
+        choice = get_valid_choice(1, 5)  # Won't return until valid!
 
         # handle valid choices
         if choice == 1:
@@ -116,7 +119,7 @@ def main():
         elif choice == 4:
             print("Delete product - coming soon!")
         elif choice == 5:
-            save_products(products)  # Don't forget to save!
+            save_products(products)
             print("Goodbye!")
             break
 

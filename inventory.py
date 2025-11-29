@@ -30,6 +30,23 @@ def show_menu():
     print("=" * 25)
 
 
+def view_products(products):
+    """Display all products"""
+    if not products:
+        print("\nThere are no products in inventory!")
+        return
+
+    print("\n=== CURRENT INVENTORY ===")
+    print(f"{'ID':<5} {'Name':<20} {'Price':<10} {'Quantity':<10}")
+    print("-" * 50)
+
+    for product_id, product in products.items():
+        print(
+            f"{product_id:<5} {product['name']:<20} ${product['price']:<9.2f} {product['quantity']:<10}"
+        )
+    print("=" * 50)
+
+
 def main():
     """Main program loop"""
     products = load_products()  # Load products at start
@@ -39,7 +56,7 @@ def main():
         choice = input("\nEnter your choice (1-5): ")
 
         if choice == "1":
-            print("View products - coming soon!")
+            view_products(products)
         elif choice == "2":
             print("Add product - coming soon!")
         elif choice == "3":

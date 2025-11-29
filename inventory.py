@@ -19,17 +19,6 @@ def save_products(products):
         json.dump(products, f, indent=2, ensure_ascii=False)
 
 
-def show_menu():
-    """Display the main menu"""
-    print("\n=== INVENTORY TRACKER ===")
-    print("1. View all products")
-    print("2. Add new product")
-    print("3. Update product quantity")
-    print("4. Delete product")
-    print("5. Exit")
-    print("=" * 25)
-
-
 def view_products(products):
     """Display all products"""
     if not products:
@@ -88,6 +77,46 @@ def add_product(products):
     print(f"\n✓ Product '{name}' added with ID {new_id}!")
 
 
+def update_quantity(products):
+    """Update product quantity"""
+    if not products:
+        print("\nNo products to update!")
+        return
+    view_products(products)  # Show products first
+
+    product_id = input("\nEnter product ID to update: ")
+
+    if product_id not in products:
+        print("Product ID not found!")
+        return
+
+    print(f"\nCurrent quantity: {products[product_id]['quantity']}")
+
+    while True:
+        try:
+            new_quantity = int(input("New quantity: "))
+            if new_quantity < 0:
+                print("Quantity cannot be negative!")
+                continue
+            break
+        except ValueError:
+            print("Invalid quantity! Please enter a whole number.")
+
+    products[product_id]["quantity"] = new_quantity
+    print(f"\n✓ Quantity updated to {new_quantity}!")
+
+
+def show_menu():
+    """Display the main menu"""
+    print("\n=== INVENTORY TRACKER ===")
+    print("1. View all products")
+    print("2. Add new product")
+    print("3. Update product quantity")
+    print("4. Delete product")
+    print("5. Exit")
+    print("=" * 25)
+
+
 def get_valid_choice(min_val, max_val):
     """Get a valid integer choice from user"""
     while True:
@@ -115,7 +144,7 @@ def main():
         elif choice == 2:
             add_product(products)
         elif choice == 3:
-            print("Update quantity - coming soon!")
+            update_quantity(products)
         elif choice == 4:
             print("Delete product - coming soon!")
         elif choice == 5:

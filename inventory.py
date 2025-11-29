@@ -94,21 +94,31 @@ def main():
 
     while True:
         show_menu()
-        choice = input("\nEnter your choice (1-5): ")
 
-        if choice == "1":
+        try:
+            choice = int(input("\nEnter your choice (1-5): "))
+        except ValueError:
+            print("❌ Invalid input! Please enter a number between 1-5.")
+            continue  # Go back to start of loop
+
+        # Check if choice is in valid range
+        if choice < 1 or choice > 5:
+            print("❌ Invalid choice! Please enter 1-5.")
+            continue
+
+        # handle valid choices
+        if choice == 1:
             view_products(products)
-        elif choice == "2":
+        elif choice == 2:
             add_product(products)
-        elif choice == "3":
+        elif choice == 3:
             print("Update quantity - coming soon!")
-        elif choice == "4":
+        elif choice == 4:
             print("Delete product - coming soon!")
-        elif choice == "5":
+        elif choice == 5:
+            save_products(products)  # Don't forget to save!
             print("Goodbye!")
             break
-        else:
-            print("Invalid choice! Please enter 1-5.")
 
 
 if __name__ == "__main__":

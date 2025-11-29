@@ -106,6 +106,30 @@ def update_quantity(products):
     print(f"\n✓ Quantity updated to {new_quantity}!")
 
 
+def delete_product(products):
+    """Delete a product"""
+    if not products:
+        print("\nNo products to delete!")
+        return
+
+    view_products(products)
+
+    product_id = input("\nEnter product ID to delete: ")
+
+    if product_id not in products:
+        print("Product ID not found!")
+        return
+
+    product_name = products[product_id]["name"]
+    confirm = input(f"Delete '{product_name}'? (yes/no): ")
+
+    if confirm.lower() == "yes":
+        del products[product_id]
+        print(f"\n✓ Product '{product_name}' deleted!")
+    else:
+        print("Deletion cancelled.")
+
+
 def show_menu():
     """Display the main menu"""
     print("\n=== INVENTORY TRACKER ===")
@@ -146,7 +170,7 @@ def main():
         elif choice == 3:
             update_quantity(products)
         elif choice == 4:
-            print("Delete product - coming soon!")
+            delete_product(products)
         elif choice == 5:
             save_products(products)
             print("Goodbye!")

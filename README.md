@@ -2,6 +2,7 @@
 
 ![Git](https://img.shields.io/badge/Git-F05033?logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![Terminal](https://img.shields.io/badge/CLI-Terminal-blue)
 
 Command-line inventory management system for tracking products, quantities, and prices.

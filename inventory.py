@@ -74,7 +74,7 @@ def add_product(products):
     # Add to products
     products[new_id] = {"name": name, "price": price, "quantity": quantity}
 
-    print(f"\n✓ Product '{name}' added with ID {new_id}!")
+    print(f"✓ Successfully added {name} (ID: {new_id}) to inventory!")
 
 
 def update_quantity(products):

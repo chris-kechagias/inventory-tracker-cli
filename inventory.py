@@ -130,6 +130,16 @@ def delete_product(products):
         print("Deletion cancelled.")
 
 
+def calculate_total_value(products):
+    """Calculate total inventory value"""
+    if not products:
+        print("\nNo products in inventory!")
+        return
+
+    total = sum(p["price"] * p["quantity"] for p in products.values())
+    print(f"\n💰 Total Inventory Value: ${total:.2f}")
+
+
 def show_menu():
     """Display the main menu"""
     print("\n=== INVENTORY TRACKER ===")
@@ -137,7 +147,8 @@ def show_menu():
     print("2. Add new product")
     print("3. Update product quantity")
     print("4. Delete product")
-    print("5. Exit")
+    print("5. Calculate total value")
+    print("6. Exit")
     print("=" * 25)
 
 
@@ -160,7 +171,7 @@ def main():
 
     while True:
         show_menu()
-        choice = get_valid_choice(1, 5)  # Won't return until valid!
+        choice = get_valid_choice(1, 6)  # Won't return until valid!
 
         # handle valid choices
         if choice == 1:
@@ -172,7 +183,8 @@ def main():
         elif choice == 4:
             delete_product(products)
         elif choice == 5:
-            save_products(products)
+            calculate_total_value(products)
+        elif choice == 6:
             print("Goodbye!")
             break
 
